@@ -14,11 +14,15 @@ class Menu extends React.Component {
 
   render() {
     return (
-      <div className="add__to__order">
+      <div className="item">
         <li className="item__name">{this.props.menuItem.name}</li>
         <p className="item__description">{this.props.menuItem.description}</p>
-        <p className="item__price">{this.props.menuItem.price}</p>
-        <button onClick={this.handleClick} type="button">
+        <p className="item__price">€{this.props.menuItem.price.toFixed(2)}</p>
+        <button
+          className="item__button"
+          onClick={this.handleClick}
+          type="button"
+        >
           Add to order
         </button>
       </div>

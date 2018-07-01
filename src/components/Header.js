@@ -7,8 +7,11 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header>
-        <h1>Deliverdrink</h1>;
+      <header className="header">
+        <h1 className="title">
+          <i>Deliver</i>
+          <i>drink</i>
+        </h1>
       </header>
     );
   }

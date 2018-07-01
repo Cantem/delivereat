@@ -64,6 +64,19 @@ app.get("/menu/:menuItemId", function(req, res) {
   }
 });
 
+app.post("/submitOrder", function(req, res) {
+  const result = Object.keys(req.body.order).map(item => {
+    const { name, price } = menu[item];
+    console.log(req.body.order);
+    return ` ${
+      req.body.customerId
+    } thanks for ordering ${item} of ${name} for ${price} each ${item * price}`;
+  });
+  // console.log(req.body);
+  console.log(result);
+  res.json(result);
+});
+
 app.get("/", function(req, res) {
   // res.render("index");
   res.sendfile(__dirname + "/static/index.html");
