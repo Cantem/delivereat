@@ -13,6 +13,7 @@ body {
 
 .list {
   list-style: none;
+  margin: 0;
 }
 
 .row {
@@ -20,9 +21,26 @@ body {
   margin-left: 100px;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+}
+
 .order {
-  flex-basis: 400px;
-  margin-left: 200px;
+  flex-basis: 300px;
+  margin-left: 100px;
+  height: 40%;
+
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 10px;
+  text-align: left;
+  border: solid 6px black;
+  margin-top: 65px;
+  margin-bottom: 10px;
 }
 
 .header {

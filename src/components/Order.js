@@ -21,7 +21,7 @@ class Order extends React.Component {
 
   sendOrder(event) {
     const orderToSend = {
-      customerId: "camelea",
+      customerId: "Cutomer 1",
       order: this.props.currentOrder
     };
 
@@ -47,18 +47,24 @@ class Order extends React.Component {
             //re-learn object desctructuring
             // this.getSubtotal(); // thought it was a good idea to update the subtotal here
             return (
-              <li key={id}>
-                {this.props.menu[id].name}: €{quantity *
-                  this.props.menu[id].price}
-                quantity:{quantity * this.props.menu[id].id}
-              </li>
+              <div key={id} className="container">
+                <li className="list">
+                  {this.props.menu[id].name}: €{quantity *
+                    this.props.menu[id].price}
+                </li>
+                <li className="list">
+                  Quantity:{quantity * this.props.menu[id].id}
+                </li>
+              </div>
             );
           })}
         </ul>
         <p>Subtotal: {this.state.currentTotal}</p>
         <p>Delivery fee: €5.00</p>
         <h2>Total:</h2>
-        <button onClick={this.sendOrder}> place order</button>
+        <button className="item__button" onClick={this.sendOrder}>
+          Place order
+        </button>
       </div>
     );
   }
