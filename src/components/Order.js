@@ -5,8 +5,7 @@ class Order extends React.Component {
     super(props);
 
     this.state = {
-      currentTotal: 0,
-      quantity: 0
+      currentTotal: 0
     };
 
     this.getSubtotal = this.getSubtotal.bind(this);
@@ -14,9 +13,14 @@ class Order extends React.Component {
   }
 
   getSubtotal() {
-    this.setState((prevState, props) => ({
-      currentTotal: prevState.currentTotal + props.menu[id].price
-    }));
+    const totalPrices = Object.keys(this.props.currentOrder).map(id => {
+      return this.props.menu[id].price * this.props.currentOrder[id];
+    });
+    let sumOfPrices = 0;
+    totalPrices.forEach(function(item) {
+      sumOfPrices += item;
+    });
+    return sumOfPrices;
   }
 
   sendOrder(event) {
@@ -39,18 +43,21 @@ class Order extends React.Component {
   }
 
   render() {
+    const subtotal = this.getSubtotal();
+    const deliveryFee = 5;
     return (
       <div className="order">
         <h2>Order: </h2>
         <ul>
           {Object.entries(this.props.currentOrder).map(([id, quantity]) => {
             //re-learn object desctructuring
-            // this.getSubtotal(); // thought it was a good idea to update the subtotal here
             return (
               <div key={id} className="container">
                 <li className="list">
-                  {this.props.menu[id].name}: €{quantity *
-                    this.props.menu[id].price}
+                  {this.props.menu[id].name}: €{parseInt(
+                    quantity * this.props.menu[id].price,
+                    10
+                  ).toFixed(2)}
                 </li>
                 <li className="list">
                   Quantity:{quantity * this.props.menu[id].id}
@@ -59,9 +66,9 @@ class Order extends React.Component {
             );
           })}
         </ul>
-        <p>Subtotal: {this.state.currentTotal}</p>
-        <p>Delivery fee: €5.00</p>
-        <h2>Total:</h2>
+        <p> Subtotal:€{parseInt(subtotal, 10).toFixed(2)} </p>
+        <p>Delivery fee:€{parseInt(deliveryFee, 10).toFixed(2)}</p>
+        <h2>Total:€{parseInt(subtotal + deliveryFee, 10).toFixed(2)}</h2>
         <button className="item__button" onClick={this.sendOrder}>
           Place order
         </button>

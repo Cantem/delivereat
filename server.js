@@ -51,6 +51,15 @@ const menu = {
   }
 };
 
+// const order {
+//   1: {
+//     customerId:
+//     itemsOrdered: [],
+//     price:
+//   }
+
+// }
+
 app.get("/menu", function(req, res) {
   res.json(menu);
 });
